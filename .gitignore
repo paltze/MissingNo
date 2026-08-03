@@ -1,1 +1,4 @@
-PokemonRed.gb
+*.gb
+*.exe
+*.pdf
+out.txt

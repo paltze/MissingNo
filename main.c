@@ -13,7 +13,14 @@ int main() {
 
     while (fread(&byte, 1, 1, ROM) == 1) {
         fprintf(fp, "%02X\n", byte);
+
+        if (i >= 0x0134 && i <= 0x0142)
+            printf("%c", byte);
+
+        i++;
     }
+
+    printf("\n");
 
     fclose(ROM);
     fclose(fp);

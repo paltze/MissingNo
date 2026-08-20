@@ -277,7 +277,7 @@ int main() {
     u8* ROM = calloc(2 * 1024 * 1024, sizeof(u8));
     u8 memory[65536];
 
-    FILE* ROM_file = fopen("./PokemonRed.gb", "rb");
+    FILE* ROM_file = fopen("./ROMS/PokemonRed.gb", "rb");
 
     u8 byte;
     size_t i = 0;

@@ -23,7 +23,7 @@ all:
 	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
 
 run: all
-	$(RUN)
+	$(RUN) $(ROM)
 
 release: all
 

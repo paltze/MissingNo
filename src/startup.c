@@ -1,5 +1,4 @@
 #include "startup.h"
-#include <stdio.h>
 
 bool startup_graphics_check(const u8* ROM) {
     u8 sig[] = {

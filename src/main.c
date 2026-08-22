@@ -3,37 +3,29 @@
 
 #include "commons.h"
 #include "startup.h"
+#include "init.h"
 
-int main(void) {
-    FILE* ROM_file = fopen("./ROMS/PokemonRed.gb", "rb");
-
-    if (ROM_file == NULL) {
-        perror("Failed to open ROM");
+int main(int argc, char *argv[]) {
+    if (argc <= 1) {
+        perror("Pass file path to ROM\n");
         return EXIT_FAILURE;
     }
 
-    u8* ROM = calloc(2 * 1024 * 1024, sizeof(u8));
-
-    if (ROM == NULL) {
-        perror("Failed to allocate ROM memory");
-        fclose(ROM_file);
+    Emu* emu = NULL;
+    if (!init_new_emu(&emu)) {
+        perror("Couldn't allocate memory for emulator\n");
         return EXIT_FAILURE;
     }
 
-    fread(ROM, sizeof(u8), 2 * 1024 * 1024, ROM_file);
-
-    if (ferror(ROM_file)) {
-        perror("Failed to read ROM");
-        free(ROM);
-        fclose(ROM_file);
+    u8* ROM = emu->ROM;
+    if (!init_read_ROM(emu->ROM, argv[1])) {
+        perror("Couldn't read ROM\n");
         return EXIT_FAILURE;
     }
-
-    fclose(ROM_file);
 
     if (!startup_graphics_check(ROM)) {
         printf("Nintendo Graphic mismatch: terminating\n");
-        free(ROM);
+        free(emu);
         return EXIT_FAILURE;
     }
 
@@ -41,7 +33,7 @@ int main(void) {
 
     if (!startup_header_checksum(ROM)) {
         printf("Header Checksum mismatch: terminating\n");
-        free(ROM);
+        free(emu);
         return EXIT_FAILURE;
     }
 
@@ -61,7 +53,7 @@ int main(void) {
     printf("ROM Size: %zu bytes\n", startup_ROM_size(ROM));
     printf("RAM Size: %zu bytes\n", startup_RAM_size(ROM));
 
-    free(ROM);
+    free(emu);
 
     return 0;
 }

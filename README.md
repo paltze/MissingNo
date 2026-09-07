@@ -1,3 +1,5 @@
+# MissingNo
+
 ## Compiling and Running
 
 ```
@@ -9,3 +11,5 @@ make release run  # optimised build + run
 
 make clean    # remove build/ and bin/
 ```
+
+Use `ROMS` variable as path to the ROM file

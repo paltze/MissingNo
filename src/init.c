@@ -9,6 +9,8 @@ bool init_new_emu(Emu** emu) {
     if (*emu == NULL)
         return false;
 
+    (*emu)->PC = 0x100;
+
     return true;
 }
 
@@ -30,5 +32,3 @@ bool init_read_ROM(u8* ROM, char* path) {
     fclose(ROM_file);
     return true;
 }
-
-

@@ -17,10 +17,10 @@ typedef enum {
 
 typedef struct {
     u8 ROM[0x200000];
-    u8 mem[0x10000];
+    u8 mem[0x2000];
     u8 r[8];
     u16 SP;
-    u16 FP;
+    u16 PC;
 } Emu;
 
 #endif

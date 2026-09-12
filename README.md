@@ -1,5 +1,7 @@
 # MissingNo
 
+Game Boy emulator written in C
+
 ## Compiling and Running
 
 ```
@@ -13,3 +15,7 @@ make clean    # remove build/ and bin/
 ```
 
 Use `ROMS` variable as path to the ROM file
+
+## License
+
+This project is licensed under the MIT license. See LICENSE file for more details.

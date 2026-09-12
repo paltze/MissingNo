@@ -39,6 +39,13 @@ typedef enum {
     CARTRIDGE_TYPE_ERROR
 } Cartridge_Type;
 
+typedef enum {
+    MBC1,
+    MBC2,
+    MBC3,
+    MBC5
+} MBC_Type;
+
 bool startup_graphics_check(const u8* ROM);
 bool startup_header_checksum(const u8* ROM);
 bool startup_global_checksum(const u8* ROM);
